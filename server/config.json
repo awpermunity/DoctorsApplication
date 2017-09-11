@@ -1,5 +1,5 @@
 ﻿{
     "connectionString": "mongodb://localhost:27017/doctors",
     "apiUrl": "http://localhost:4000",
-    "secret": ""
+    "secret": "secret"
 }
