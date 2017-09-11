@@ -1,0 +1,49 @@
+<app-sidebar [admin]='admin'> </app-sidebar>
+<h4> Search a visit</h4>
+<form #form>
+  <div class="row form-group">
+    <div class="col-sm-4">
+      <label for="search"> city</label>
+      <input type="text" name="city" class="form-control" (keyup)="changeCity($event)" (click)="form.reset()" ngModel>
+    </div>
+    <div class="col-sm-4">
+      <label for="search"> name</label>
+      <input type="text" name="name" class="form-control" (keyup)="changeName($event)" (click)="form.reset()" ngModel>
+    </div>
+    <div class="col-sm-4">
+      <label for="search"> speciality </label>
+      <input type="text" name="speciality" class="form-control" (keyup)="changeSpeciality($event)" (click)="form.reset()" ngModel>
+    </div>
+    <div class="col-sm-4">
+      <label for="search"> check the date</label>
+      <input type="datetime-local" class="form-control" min="2017-09-11T08:00" max="2017-10-11T16:00" step="3600" (change)="changeDate($event)"
+        required> {{date}}
+    </div>
+  </div>
+</form>
+<div class="container">
+  <div class="row" *ngIf="filteredDoctors?.length>0">
+    <div class="cool-sm-12">
+      <table class="cs-table table table-striped">
+        <thead>
+          <tr>
+            <th>name</th>
+            <th>speciality</th>
+            <th>city</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let doctor of filteredDoctors" (click)="goToDetails(doctor)" class="row-doctor">
+            <td> {{doctor.name | uppercase}}</td>
+            <td> {{doctor.speciality}}</td>
+            <td> {{doctor.city }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div>
+  </div>
+</div>
+
+<app-logout></app-logout>

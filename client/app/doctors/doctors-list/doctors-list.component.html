@@ -1,0 +1,43 @@
+<app-sidebar [admin]='admin'>
+</app-sidebar>
+<app-logout>
+</app-logout>
+<div id="content-wrapper">
+  <app-header>
+    <p levels>doctors</p>
+    <div content>
+      <p> LIST OF DOCTORS</p>
+    </div>
+  </app-header>
+  <div class="container">
+    <div class="row">
+      <div class="cool-sm-12">
+        <table class="cs-table table table-striped">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>speciality</th>
+              <th>city</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let doctor of doctors;let i=index" (click)="goToDoctorDetails(doctor)" class="row-doctor">
+              <td> {{doctor._id}}</td>
+              <td> {{doctor.name | uppercase}}</td>
+              <td> {{doctor.speciality}}</td>
+              <td> {{doctor.city }}</td>
+              <button *ngIf="admin" class="delete" (click)="removeDoctor(doctor,$event)">x</button>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div *ngIf="admin" class="data-container">
+        <p class="data-header"> Add a new doctor</p>
+        <add-doctor (doctorAdded)="loadAllDoctors()"></add-doctor>
+      </div>
+    </div>
+  </div>
+</div>

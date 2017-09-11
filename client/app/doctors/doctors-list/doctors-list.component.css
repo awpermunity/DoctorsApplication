@@ -1,0 +1,78 @@
+.cs-table {
+    background: white;
+    }
+    th{
+        font-weight: 800;
+        text-transform: uppercase;
+        color: black;
+    }
+
+    td{
+        color:black
+    }
+   
+    .row-error {
+        border-left: 2px solid red;
+    }
+    .row-doctor {
+        cursor: pointer;
+    }
+    .data-header{
+        color:skyblue;
+        font-size:22px;
+        text-transform:uppercase;
+        font-weight:700;
+        margin-bottom: 0px;
+        margin-left:100px;
+    }
+
+    .data-container{
+        padding:15px;
+        background: lemonchiffon;
+        margin:100px ;
+        margin-left:100px;
+    }
+    .error {
+        background: red;
+        color:whitesmoke;
+        font-size:11px;
+        padding:4px;
+
+    }
+    button.delete {
+    float:right;
+    margin-top: 10px;
+    margin-right: .8em;
+    background-color: black !important;
+    color:white;
+    }
+
+
+
+.logout{
+     position:absolute;
+   top:0;
+   right:0;
+
+}
+.logo{
+    margin:30px auto;
+    width: 120px;
+    display: block;
+
+}
+
+ul{
+    list-style:none;
+    padding-left:0;
+
+
+}
+li:hover{
+    background: skyblue;
+    transition:linear 300ms;
+}
+
+li.active{
+    background: cyan
+}

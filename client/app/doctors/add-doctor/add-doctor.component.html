@@ -1,0 +1,26 @@
+<form [formGroup]="doctorForm">
+    <div class="row form-group">
+        <div class="col-sm-4">
+            <label>name</label>
+            <input formControlName="name" type="text" class="form-control" placeholder="name">
+            <p *ngIf="!doctorForm.get('name').valid && doctorForm.get('name').dirty " class="error"> This field is required! </p>
+        </div>
+        <div class="col-sm-4">
+            <label>speciality</label>
+            <input formControlName="speciality" type="text" class="form-control" placeholder="speciality">
+            <p *ngIf="!doctorForm.get('speciality').valid && doctorForm.get('speciality').dirty " class="error"> This field is required! </p>
+        </div>
+        <div class="col-sm-4">
+            <label>city</label>
+            <input formControlName="city" type="text" class="form-control" placeholder="city">
+            <p *ngIf="!doctorForm.get('city').valid && doctorForm.get('city').dirty " class="error"> This field is required! </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <button [disabled]="doctorForm.invalid" (click)="addDoctor()" type="submit" class="btn btn-primary float-right">Add doctor</button>
+            <button (click)="doctorForm.reset()" type="submit" class="btn btn-default float-right">Reset</button>
+        </div>
+    </div>
+</form>
+<pre> {{doctorForm.value | json}} </pre>

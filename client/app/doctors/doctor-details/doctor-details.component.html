@@ -1,0 +1,73 @@
+<app-sidebar [admin]='admin'>
+</app-sidebar>
+<app-header>
+  <p levels>doctor</p>
+  <div content>
+    <p> {{doctor?.name}}</p>
+  </div>
+</app-header>
+<app-logout>
+</app-logout>
+
+<p class="data-header"> Details </p>
+
+<div class="data-container" *ngIf="doctorForm">
+  <form [formGroup]="doctorForm">
+    <div class="row form-group">
+      <div *ngIf='admin' class="col-sm-4">
+        <label>id:</label>
+        <input formControlName="_id" type="text" class="form-control" placeholder="_id">
+      </div>
+      <div class="col-sm-4">
+        <label>name:</label>
+        <div *ngIf='!admin' class='adminFalse'> {{doctor.name}} </div>
+        <input *ngIf='admin' formControlName="name" type="text" class="form-control" placeholder="name">
+      </div>
+      <div class="col-sm-4">
+        <label>speciality:</label>
+        <div *ngIf='!admin' class='adminFalse'> {{doctor.speciality}} </div>
+        <input *ngIf='admin' formControlName="speciality" type="text" class="form-control" placeholder="speciality">
+      </div>
+      <div class="col-sm-4">
+        <label>city:</label>
+        <div *ngIf='!admin' class='adminFalse'> {{doctor.city}} </div>
+        <input *ngIf='admin' formControlName="city" type="text" class="form-control" placeholder="city">
+      </div>
+    </div>
+    <button (click)="goBack()">Back</button>
+    <div class="row">
+      <div *ngIf='admin' class="col-sm-12">
+        <button [disabled]="doctorForm.invalid" (click)="updateDoctor()" type="submit" class="btn btn-primary float-right">Edit doctor</button>
+        <button (click)="doctorForm.reset()" type="submit" class="btn btn-default float-right">Reset</button>
+      </div>
+    </div>
+    <div *ngIf='admin'>
+      <h5>Dates </h5>
+      <table class="table table-bordered">
+        <tr *ngFor="let visit of doctor.visit ">
+          <td>
+            Date: {{visit.date}}, Reason for visit: {{visit.reason}}, user: {{visit.user}}
+            <button class="btn btn-default float-right" (click)="removevisit(this.visit)">x</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </form>
+</div>
+<p class="data-header"> visit </p>
+<div class="data-container">
+  <form #visitForm="ngForm">
+    <div class="form-group">
+      <div class="col-sm-12">
+        <label for="datePicker"> Choose your visit Date and time:</label>
+        <input type="datetime-local" [(ngModel)]="date" name="datePicker" id="datePicker" min="2017-08-16T08:00" max="16:00" step="3600"
+          required> {{date}}
+      </div>
+      <div class="col-sm-12">
+        <label> Reason for visit  </label>
+        <input type="text" class="form-control" id="reason" placeholder="reason" required [(ngModel)]="reason" name="reason">
+      </div>
+      <button [disabled]="visitForm.invalid" (click)="addToList(); " class="btn btn-succes float-right" type="submit">Add</button>
+    </div>
+  </form>
+</div>

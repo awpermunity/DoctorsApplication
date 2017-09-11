@@ -1,0 +1,54 @@
+.cs-table {
+    background:white;
+    }
+    th{
+        font-weight: 800;
+        text-transform: uppercase;
+        color: black;
+    }
+
+    td{
+        color:black
+    }
+.adminFalse{
+     font-weight: 500;
+        color: black;
+}
+    th{
+        font-weight: 00;
+        text-transform: uppercase;
+        color: green;
+        background: white
+    }
+
+    td{
+        color:black
+    }
+    
+    .row-error {
+        border-left: 2px solid red;
+    }
+    .row-doctor{
+        cursor: pointer;
+    }
+    .data-header{
+        color:skyblue;
+        font-size:22px;
+        text-transform:uppercase;
+        margin:15px ;
+        padding: 15px;
+    }
+
+    .data-container{
+        padding:15px;
+        background: lemonchiffon;
+        margin:15px ;
+    }
+    .error {
+        background: red;
+        color:whitesmoke;
+        font-size:11px;
+        padding:4px;
+
+    }
+
