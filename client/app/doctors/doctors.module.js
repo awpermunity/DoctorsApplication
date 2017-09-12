@@ -15,6 +15,7 @@ var doctor_search_component_1 = require("./doctor-search/doctor-search.component
 var forms_1 = require("@angular/forms");
 var add_doctor_component_1 = require("./add-doctor/add-doctor.component");
 var core_module_1 = require("./core-module/core-module");
+var isAdmin_service_1 = require("../_services/isAdmin.service");
 var DoctorsModule = /** @class */ (function () {
     function DoctorsModule() {
     }
@@ -30,7 +31,7 @@ var DoctorsModule = /** @class */ (function () {
             ],
             exports: [doctor_details_component_1.DoctorDetailsComponent, doctor_search_component_1.DoctorSearchComponent, add_doctor_component_1.AddDoctorComponent],
             declarations: [doctor_details_component_1.DoctorDetailsComponent, doctor_search_component_1.DoctorSearchComponent, add_doctor_component_1.AddDoctorComponent],
-            providers: []
+            providers: [isAdmin_service_1.isAdminService]
         })
     ], DoctorsModule);
     return DoctorsModule;

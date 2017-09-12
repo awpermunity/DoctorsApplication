@@ -6,6 +6,7 @@ import { AuthenticationService } from '../../_services/index';
 
 import { DoctorService } from "../../_services/doctor.service";
 import { Doctor } from '../../_models/index';
+import { isAdminService } from "../../_services/isAdmin.service";
 
 @Component({
     moduleId: module.id,
@@ -22,24 +23,13 @@ export class DoctorsListComponent implements OnInit {
 
     constructor(
         private doctorService: DoctorService,
+        private isAdminService: isAdminService,
         private router: Router,
         private authGuard: AuthGuard,
         private authenticationService: AuthenticationService
     ) {
-        this.admin = false;
-        this.user = '';
-        this.userToCheck = {};
-        this.user = authenticationService.getCurrentUser();
-        console.log("USER: ", this.user);
-        if (this.user != '') {
-            this.userToCheck = this.userToObject(this.user)
-        }
-        else {
-            alert('User empty');
-            this.router.navigate(['/login'])
-        }
-        console.log("userToCheck: ", this.userToCheck);
-        this.isAdmin(this.userToCheck);
+        this.admin = this.isAdminService.admin;
+        console.log('ADMINEK', this.admin)
     }
 
     ngOnInit() {

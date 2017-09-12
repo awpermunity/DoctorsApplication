@@ -8,6 +8,7 @@ import { DoctorSearchComponent } from './doctor-search/doctor-search.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AddDoctorComponent } from './add-doctor/add-doctor.component';
 import { CoreModule } from './core-module/core-module';
+import { isAdminService } from "../_services/isAdmin.service";
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import { CoreModule } from './core-module/core-module';
   ],
   exports: [DoctorDetailsComponent, DoctorSearchComponent, AddDoctorComponent],
   declarations: [DoctorDetailsComponent, DoctorSearchComponent, AddDoctorComponent],
-  providers: []
+  providers: [isAdminService]
 
 })
 export class DoctorsModule { }

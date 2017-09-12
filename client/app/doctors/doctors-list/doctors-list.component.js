@@ -14,27 +14,17 @@ var router_1 = require("@angular/router");
 var index_1 = require("../../_guards/index");
 var index_2 = require("../../_services/index");
 var doctor_service_1 = require("../../_services/doctor.service");
+var isAdmin_service_1 = require("../../_services/isAdmin.service");
 var DoctorsListComponent = /** @class */ (function () {
-    function DoctorsListComponent(doctorService, router, authGuard, authenticationService) {
+    function DoctorsListComponent(doctorService, isAdminService, router, authGuard, authenticationService) {
         this.doctorService = doctorService;
+        this.isAdminService = isAdminService;
         this.router = router;
         this.authGuard = authGuard;
         this.authenticationService = authenticationService;
         this.doctors = [];
-        this.admin = false;
-        this.user = '';
-        this.userToCheck = {};
-        this.user = authenticationService.getCurrentUser();
-        console.log("USER: ", this.user);
-        if (this.user != '') {
-            this.userToCheck = this.userToObject(this.user);
-        }
-        else {
-            alert('User empty');
-            this.router.navigate(['/login']);
-        }
-        console.log("userToCheck: ", this.userToCheck);
-        this.isAdmin(this.userToCheck);
+        this.admin = this.isAdminService.admin;
+        console.log('ADMINEK', this.admin);
     }
     DoctorsListComponent.prototype.ngOnInit = function () {
         this.loadAllDoctors();
@@ -73,6 +63,7 @@ var DoctorsListComponent = /** @class */ (function () {
             providers: [doctor_service_1.DoctorService]
         }),
         __metadata("design:paramtypes", [doctor_service_1.DoctorService,
+            isAdmin_service_1.isAdminService,
             router_1.Router,
             index_1.AuthGuard,
             index_2.AuthenticationService])

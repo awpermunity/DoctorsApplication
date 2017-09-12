@@ -16,47 +16,23 @@ var common_1 = require("@angular/common");
 var auth_guard_1 = require("../../_guards/auth.guard");
 var authentication_service_1 = require("../../_services/authentication.service");
 var doctor_service_1 = require("../../_services/doctor.service");
+var isAdmin_service_1 = require("../../_services/isAdmin.service");
 var DoctorDetailsComponent = /** @class */ (function () {
-    function DoctorDetailsComponent(doctorService, route, formBuilder, location, router, authGuard, authenticationService) {
+    function DoctorDetailsComponent(doctorService, isAdminService, route, formBuilder, location, router, authGuard, authenticationService) {
         this.doctorService = doctorService;
+        this.isAdminService = isAdminService;
         this.route = route;
         this.formBuilder = formBuilder;
         this.location = location;
         this.router = router;
         this.authGuard = authGuard;
         this.authenticationService = authenticationService;
-        this.admin = false;
-        this.notAdmin = false;
-        this.user = '';
-        this.userToCheck = {};
-        this.user = authenticationService.getCurrentUser();
-        console.log("USER: ", this.user);
-        if (this.user != '') {
-            this.userToCheck = this.userToObject(this.user);
-        }
-        else {
-            alert('User empty');
-            this.router.navigate(['/login']);
-        }
-        console.log("userToCheck: ", this.userToCheck);
-        this.isAdmin(this.userToCheck);
+        this.admin = this.isAdminService.admin;
+        console.log('ADMINEK', this.admin);
     }
     DoctorDetailsComponent.prototype.ngOnInit = function () {
         this.loadDoctor();
         console.log("DATE: ", this.date);
-    };
-    DoctorDetailsComponent.prototype.userToObject = function (value) {
-        console.log('userParse', value);
-        var user = JSON.parse(value);
-        console.log('userParse', user);
-        return user;
-    };
-    DoctorDetailsComponent.prototype.isAdmin = function (value) {
-        if (value.username === "admin") {
-            this.admin = true;
-            console.log('admin', this.admin);
-        }
-        return null;
     };
     DoctorDetailsComponent.prototype.buildDoctorForm = function () {
         return this.formBuilder.group({
@@ -102,9 +78,11 @@ var DoctorDetailsComponent = /** @class */ (function () {
             moduleId: module.id,
             selector: 'app-doctor-details',
             templateUrl: './doctor-details.component.html',
-            styleUrls: ['./doctor-details.component.css']
+            styleUrls: ['./doctor-details.component.css'],
+            providers: [isAdmin_service_1.isAdminService]
         }),
         __metadata("design:paramtypes", [doctor_service_1.DoctorService,
+            isAdmin_service_1.isAdminService,
             router_1.ActivatedRoute,
             forms_1.FormBuilder,
             common_1.Location,

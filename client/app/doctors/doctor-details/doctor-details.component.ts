@@ -7,12 +7,13 @@ import { AuthGuard } from "../../_guards/auth.guard";
 import { AuthenticationService } from "../../_services/authentication.service";
 import { Doctor } from '../../_models/index';
 import { DoctorService } from '../../_services/doctor.service';
-
+import { isAdminService } from '../../_services/isAdmin.service'
 @Component({
   moduleId: module.id,
   selector: 'app-doctor-details',
   templateUrl: './doctor-details.component.html',
-  styleUrls: ['./doctor-details.component.css']
+  styleUrls: ['./doctor-details.component.css'],
+  providers: [isAdminService]
 })
 export class DoctorDetailsComponent implements OnInit {
   doctor: Doctor;
@@ -27,6 +28,7 @@ export class DoctorDetailsComponent implements OnInit {
 
   constructor(
     private doctorService: DoctorService,
+    private isAdminService: isAdminService,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private location: Location,
@@ -34,44 +36,14 @@ export class DoctorDetailsComponent implements OnInit {
     private authGuard: AuthGuard,
     private authenticationService: AuthenticationService
   ) {
-    this.admin = false;
-    this.notAdmin = false;
-    this.user = '';
-    this.userToCheck = {};
-    this.user = authenticationService.getCurrentUser();
-    console.log("USER: ", this.user);
-    if (this.user != '') {
-      this.userToCheck = this.userToObject(this.user)
-    }
-    else {
-      alert('User empty');
-      this.router.navigate(['/login'])
-    }
-    console.log("userToCheck: ", this.userToCheck);
-    this.isAdmin(this.userToCheck);
+    this.admin = this.isAdminService.admin;
+    console.log('ADMINEK', this.admin)
   }
 
   ngOnInit() {
     this.loadDoctor();
     console.log("DATE: ", this.date);
 
-
-  }
-  userToObject(value: string) {
-    console.log('userParse', value)
-    let user: Object = JSON.parse(value);
-    console.log('userParse', user)
-    return user;
-
-  }
-
-  isAdmin(value: any): any {
-    if (value.username === "admin") {
-      this.admin = true;
-      console.log('admin', this.admin);
-
-    }
-    return null;
 
   }
 
@@ -101,7 +73,6 @@ export class DoctorDetailsComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-
   addToList() {
     let date: Date = this.date;
     let doctor = this.doctor;
