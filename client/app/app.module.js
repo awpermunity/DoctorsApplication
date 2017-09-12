@@ -24,6 +24,7 @@ var doctors_list_component_1 = require("./doctors/doctors-list/doctors-list.comp
 var core_module_1 = require("./doctors/core-module/core-module");
 var shared_module_1 = require("./doctors/shared-module/shared-module");
 var doctor_service_1 = require("./_services/doctor.service");
+// import { ConfirmationDialog } from './confirm/confirmation-dialog';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -32,6 +33,7 @@ var AppModule = /** @class */ (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
+                forms_1.ReactiveFormsModule,
                 http_1.HttpModule,
                 doctors_module_1.DoctorsModule,
                 app_routing_1.routing,

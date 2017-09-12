@@ -10,13 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var auth_guard_1 = require("../_guards/auth.guard");
 var authentication_service_1 = require("../_services/authentication.service");
 var isAdminService = /** @class */ (function () {
-    function isAdminService(authGuard, authenticationService) {
-        this.authGuard = authGuard;
+    function isAdminService(authenticationService) {
         this.authenticationService = authenticationService;
-        this.user = '';
         this.userToCheck = {};
         this.user = authenticationService.getCurrentUser();
         console.log("USER: ", this.user);
@@ -26,12 +23,10 @@ var isAdminService = /** @class */ (function () {
         else {
             alert('User empty');
         }
-        console.log("userToCheck: ", this.userToCheck);
         this.isAdmin(this.userToCheck);
     }
     isAdminService.prototype.userToObject = function (value) {
         var user = JSON.parse(value);
-        console.log('userParse', user);
         return user;
     };
     isAdminService.prototype.isAdmin = function (value) {
@@ -43,8 +38,7 @@ var isAdminService = /** @class */ (function () {
     };
     isAdminService = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [auth_guard_1.AuthGuard,
-            authentication_service_1.AuthenticationService])
+        __metadata("design:paramtypes", [authentication_service_1.AuthenticationService])
     ], isAdminService);
     return isAdminService;
 }());

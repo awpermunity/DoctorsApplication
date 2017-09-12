@@ -38,7 +38,6 @@ export class DoctorSearchComponent implements OnInit {
     this.doctorsService.getAll().subscribe(doctors => {
       this.doctors = doctors;
       this.doctorSearchService.setDoctors(this.doctors);
-      //this.getDoctorCities();
     });
   }
 
@@ -86,5 +85,4 @@ export class DoctorSearchComponent implements OnInit {
       console.log(this.filteredDoctors);
     }, 100);
   }
-
 }

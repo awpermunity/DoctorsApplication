@@ -3,7 +3,6 @@ import { ActivatedRoute, Params, Router } from "@angular/router";
 import { FormBuilder, FormsModule, FormGroup, Validators } from "@angular/forms";
 import { Location } from '@angular/common';
 import { Pipe, PipeTransform } from '@angular/core';
-import { AuthGuard } from "../../_guards/auth.guard";
 import { AuthenticationService } from "../../_services/authentication.service";
 import { Doctor } from '../../_models/index';
 import { DoctorService } from '../../_services/doctor.service';
@@ -13,7 +12,6 @@ import { isAdminService } from '../../_services/isAdmin.service'
   selector: 'app-doctor-details',
   templateUrl: './doctor-details.component.html',
   styleUrls: ['./doctor-details.component.css'],
-  providers: [isAdminService]
 })
 export class DoctorDetailsComponent implements OnInit {
   doctor: Doctor;
@@ -23,7 +21,6 @@ export class DoctorDetailsComponent implements OnInit {
   user: string;
   userToCheck: Object;
   visit: Object;
-  notAdmin: boolean;
   reason: string;
 
   constructor(
@@ -33,18 +30,14 @@ export class DoctorDetailsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private location: Location,
     private router: Router,
-    private authGuard: AuthGuard,
     private authenticationService: AuthenticationService
   ) {
     this.admin = this.isAdminService.admin;
-    console.log('ADMINEK', this.admin)
   }
 
   ngOnInit() {
     this.loadDoctor();
     console.log("DATE: ", this.date);
-
-
   }
 
   buildDoctorForm() {
@@ -78,8 +71,15 @@ export class DoctorDetailsComponent implements OnInit {
     let doctor = this.doctor;
     let reason: String = this.reason;
     let user: String = this.user
-    this.doctorService.addToList(doctor, date, reason, user).subscribe(() => { })
+    //prowizoryczny confirm (problem z materials)
+    let x: any = confirm('click ok to confirm visit')
+    if (x) {
+      console.log('confirm true')
+      this.doctorService.addToList(doctor, date, reason, user).subscribe(() => { })
+    }
+
   }
+
 
   removevisit(visit: any) {
     let doctor = this.doctor;

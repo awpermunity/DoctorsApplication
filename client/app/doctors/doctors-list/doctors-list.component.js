@@ -11,34 +11,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var index_1 = require("../../_guards/index");
-var index_2 = require("../../_services/index");
+var index_1 = require("../../_services/index");
 var doctor_service_1 = require("../../_services/doctor.service");
 var isAdmin_service_1 = require("../../_services/isAdmin.service");
 var DoctorsListComponent = /** @class */ (function () {
-    function DoctorsListComponent(doctorService, isAdminService, router, authGuard, authenticationService) {
+    function DoctorsListComponent(doctorService, isAdminService, router, authenticationService) {
         this.doctorService = doctorService;
         this.isAdminService = isAdminService;
         this.router = router;
-        this.authGuard = authGuard;
         this.authenticationService = authenticationService;
         this.doctors = [];
         this.admin = this.isAdminService.admin;
-        console.log('ADMINEK', this.admin);
     }
     DoctorsListComponent.prototype.ngOnInit = function () {
         this.loadAllDoctors();
-    };
-    DoctorsListComponent.prototype.userToObject = function (value) {
-        var user = JSON.parse(value);
-        return user;
-    };
-    DoctorsListComponent.prototype.isAdmin = function (value) {
-        if (value.username === "admin") {
-            this.admin = true;
-            console.log('ADMINNN', this.admin);
-        }
-        return null;
     };
     DoctorsListComponent.prototype.loadAllDoctors = function () {
         var _this = this;
@@ -65,8 +51,7 @@ var DoctorsListComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [doctor_service_1.DoctorService,
             isAdmin_service_1.isAdminService,
             router_1.Router,
-            index_1.AuthGuard,
-            index_2.AuthenticationService])
+            index_1.AuthenticationService])
     ], DoctorsListComponent);
     return DoctorsListComponent;
 }());

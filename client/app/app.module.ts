@@ -1,6 +1,6 @@
 ﻿import { NgModule, } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -19,11 +19,12 @@ import { DoctorsListComponent } from './doctors/doctors-list/doctors-list.compon
 import { CoreModule } from "./doctors/core-module/core-module";
 import { SharedModule } from "./doctors/shared-module/shared-module";
 import { DoctorService } from './_services/doctor.service';
-
+// import { ConfirmationDialog } from './confirm/confirmation-dialog';
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
+        ReactiveFormsModule,
         HttpModule,
         DoctorsModule,
         routing,
@@ -37,6 +38,7 @@ import { DoctorService } from './_services/doctor.service';
         DoctorsListComponent,
         LoginComponent,
         RegisterComponent,
+        // ConfirmationDialog
 
 
     ],

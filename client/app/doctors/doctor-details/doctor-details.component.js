@@ -13,22 +13,19 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var forms_1 = require("@angular/forms");
 var common_1 = require("@angular/common");
-var auth_guard_1 = require("../../_guards/auth.guard");
 var authentication_service_1 = require("../../_services/authentication.service");
 var doctor_service_1 = require("../../_services/doctor.service");
 var isAdmin_service_1 = require("../../_services/isAdmin.service");
 var DoctorDetailsComponent = /** @class */ (function () {
-    function DoctorDetailsComponent(doctorService, isAdminService, route, formBuilder, location, router, authGuard, authenticationService) {
+    function DoctorDetailsComponent(doctorService, isAdminService, route, formBuilder, location, router, authenticationService) {
         this.doctorService = doctorService;
         this.isAdminService = isAdminService;
         this.route = route;
         this.formBuilder = formBuilder;
         this.location = location;
         this.router = router;
-        this.authGuard = authGuard;
         this.authenticationService = authenticationService;
         this.admin = this.isAdminService.admin;
-        console.log('ADMINEK', this.admin);
     }
     DoctorDetailsComponent.prototype.ngOnInit = function () {
         this.loadDoctor();
@@ -65,7 +62,12 @@ var DoctorDetailsComponent = /** @class */ (function () {
         var doctor = this.doctor;
         var reason = this.reason;
         var user = this.user;
-        this.doctorService.addToList(doctor, date, reason, user).subscribe(function () { });
+        //prowizoryczny confirm (problem z materials)
+        var x = confirm('click ok to confirm visit');
+        if (x) {
+            console.log('confirm true');
+            this.doctorService.addToList(doctor, date, reason, user).subscribe(function () { });
+        }
     };
     DoctorDetailsComponent.prototype.removevisit = function (visit) {
         var doctor = this.doctor;
@@ -79,7 +81,6 @@ var DoctorDetailsComponent = /** @class */ (function () {
             selector: 'app-doctor-details',
             templateUrl: './doctor-details.component.html',
             styleUrls: ['./doctor-details.component.css'],
-            providers: [isAdmin_service_1.isAdminService]
         }),
         __metadata("design:paramtypes", [doctor_service_1.DoctorService,
             isAdmin_service_1.isAdminService,
@@ -87,7 +88,6 @@ var DoctorDetailsComponent = /** @class */ (function () {
             forms_1.FormBuilder,
             common_1.Location,
             router_1.Router,
-            auth_guard_1.AuthGuard,
             authentication_service_1.AuthenticationService])
     ], DoctorDetailsComponent);
     return DoctorDetailsComponent;

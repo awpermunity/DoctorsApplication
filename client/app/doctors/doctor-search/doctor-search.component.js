@@ -33,7 +33,6 @@ var DoctorSearchComponent = /** @class */ (function () {
         this.doctorsService.getAll().subscribe(function (doctors) {
             _this.doctors = doctors;
             _this.doctorSearchService.setDoctors(_this.doctors);
-            //this.getDoctorCities();
         });
     };
     DoctorSearchComponent.prototype.goToDetails = function (doctor) {

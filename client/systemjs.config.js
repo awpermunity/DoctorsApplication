@@ -27,6 +27,10 @@
             // other libraries
             'rxjs': 'npm:rxjs',
             'moment': 'node_modules/moment/moment.js',
+            '@angular/animations': 'npm:@angular/animations/bundles/animations.umd.js',
+            '@angular/cdk': 'npm:@angular/cdk/bundles/cdk.umd.js',
+            '@angular/material': 'npm:@angular/material/bundles/material.umd.js',
+
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -39,6 +43,17 @@
             },
             moment: {
                 defaultExtension: 'js'
+            },
+            material: {
+                defaultExtension: 'js'
+
+            },
+            cdk: {
+                defaultExtension: 'js'
+            },
+            animations: {
+                defaultExtension: 'js'
+
             }
         }
     });

@@ -20,6 +20,7 @@ export class DoctorSearchService {
     filterByCity(value: string) {
         this.filteredByCityValue = value;
     }
+
     filterByName(value: string) {
         this.filteredByNameValue = value;
     }
@@ -52,22 +53,18 @@ export class DoctorSearchService {
             this.filteredDoctors = this.doctors.filter(doctor => {
                 return new RegExp(this.filteredByCityValue, 'gi').test(doctor['city']);
             });
-
         }
-
         if (this.filteredByNameValue) {
             this.filteredDoctors = this.doctors.filter(doctor => {
                 return new RegExp(this.filteredByNameValue, 'gi').test(doctor['name']);
             });
 
         }
-
         if (this.filteredBySpecialityValue) {
             this.filteredDoctors = this.doctors.filter(doctor => {
                 return new RegExp(this.filteredBySpecialityValue, 'gi').test(doctor['speciality']);
             })
         }
-
     }
 
     getFilteredDoctors() {
